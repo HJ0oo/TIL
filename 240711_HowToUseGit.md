@@ -4,6 +4,9 @@
 <br>
 <br>
 
+
+
+
 # GIT의 이해 - 분산버전관리시스템
 ### 분산‘버전관리시스템'
 변화를 기록하고 추적. **버전**을 관리하는 것<BR>
@@ -20,11 +23,10 @@ vs <BR>
 - 중앙 서버의 장애나 손실에 대비하여 백업 복구 용이
 - 인터넷 연결 안되어있어도 가능. 일단 저장하고 나중에 중앙이랑 동기화하면 되니까.
 - 같은 버전을 백업 여러개 하는 것
----
 <BR><BR>
 
-# GIT의 3가지 영역
 
+# GIT의 3가지 영역
 1. Working Directory
    - 개발자가 실제로 작업하고 있는 공간
 2. Staging Area
@@ -43,8 +45,8 @@ git의 버전관리를 시작할 디렉토리에서 진행<BR>
   
 ---
 **git add** : 변경사항이 있는 파일을 staging area로 add<BR>
-**git add.** : 현재있는위치 전부 올리기 - 여러개를 한꺼번에 올리는 방법<br>
-**git status** : 현재 로컬 저장소의 파일 상태를 보여줌. *중간중간 계속 확인하기* <br>
+**git add .** : 현재있는위치 전부 올리기 : 여러개를 한꺼번에 올리는 방법<br>
+**git status** : 현재 로컬 저장소의 파일 상태를 보여줌. *중간중간 계속 확인하기!!* <br>
 **git commit** : staging area에 있는 것들을 repository에 기록 저장소에 기록. 해당시점 버전을 생성하고 변경이력을 남기는것.<br>
 **git commit -m “메시지”** : 저장소 영역에 올리기 위해. 버전의 이름이라고 할 수 있는 커밋의 메시지를 정해줘야 함.<br>
 
@@ -59,3 +61,43 @@ git의 버전관리를 시작할 디렉토리에서 진행<BR>
 **git log --oneline** : 그래서 이렇게 짧게 만들수있음.<br>
 
 # Remote Repository
+원격 저장소에 저장. 대표적 - gitlab, github, bitbucket
+### README file
+- 파일의 이름이 반드시 README여야 함.
+- 이 저장소에 대한 가이드
+- 예시) 파이썬은 오픈소스 언어이므로 python의 README 파일을 볼 수 있음
+
+### remote 
+git remote add ***orgin*** remote_repo_url<br>
+**로컬에서 원격 저장소에 대해 마음대로 별칭을 짓는 것이라고 생각하기<br>**
+git remote add orgin ***remote_repo_url***<br>
+**원격저장소의 링크**<br>
+**git remote -v**<br>현재 디렉토리와 연결된 원격 저장소가 어디인지 확인
+
+### push
+원격 저장소의 상태와 로컬 저장소의 상태가 같아지는 것<br>
+push하면 **변경사항만** 올리는 것<br>
+**git push origin master**
+
+
+### pull
+push와 달리, **전부** 내려받는 것<br>
+변경사항 직전의 상황이 같아야 pull 가능<br>
+그래서 pull에서 오류가 나는 경우가 잦으므로 주의하기
+
+### clone
+**git clone** remote_repo_url<br>
+clone을 받았다면 git init 필요없음
+
+---
+ 
+### Gitignore
+추적하지 못하게 git의 관리에서 빼는 것.
+.gitignore 확장자 없이
+.으로 시작하는 건 주로 숨김 파일이나 설정 파일
+
+
+> 참고
+> 예시) git log 를 했을 때 너무 길면 오류가 뜸
+> 1. q를 눌러서 quit 하거나
+> 2. 엔터키를 계속 치면 됨
