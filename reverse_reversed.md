@@ -14,6 +14,8 @@ s.reverse()  # AttributeError: 'str' object has no attribute 'reverse'
 - 중요한 점 : reverse는 **값을 반환하지 않고** 순서만 뒤섞음.
 - l.reverse() 라고 쓰면 충분.
 
+> **<파이썬 공식 문서>** [https://docs.python.org/3/library/functions.html#reversed]<br>
+> The reverse() method modifies the sequence in place for economy of space when reversing a large sequence. To remind users that it operates by side effect, it does not return the reversed sequence.<br>
 
 ## reversed는 list에서 제공하는 함수가 아니라 **내장함수**
 ```python
@@ -41,7 +43,18 @@ tuple(reversed(t)) # 튜플 형태로
 이런 식으로 변환해서 사용하면 된다.
 
 
-> <정리> <br>
-> list.reverse() <br>
+
+> **<파이썬 공식 문서>** [https://docs.python.org/3/library/functions.html#reversed]<br>
+> reversed(**seq**)<br>
+> Return a reverse iterator. seq must be an object which has a __reversed__() method or supports the sequence protocol (the __len__() method and the __getitem__() method with integer arguments starting at 0).<br>
+
+<br>
+<br>
+
+
+## 정리
+> ```python
+> list.reverse()
 > output_seq = reversed(input_seq)
+> ```
 
