@@ -4,7 +4,7 @@ admin 계정이 아니라 미러링 불가.
 성공! 앞으로 gitlab에서의 작업을 미러링해서 github에 모을 수 있다!<br>
 잔디도 빈 곳 없이 심을 수 있을듯😊
 
-### 방법 3. 
+### 방법 3. 새로운 레포에서...
 1. $ git subtree add --prefix=**기존**리포지토리명 **기존**리포지토리주소 **기존**브랜치명<br>
 예시) $ git subtree add --prefix=TIL https://github.com/ihjkong/TIL.git master<br>
 2. $ git push origin master<br>
