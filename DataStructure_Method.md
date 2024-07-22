@@ -41,3 +41,17 @@ for i in arr:
 > 모든 비 키워드 인자는 str() 이 하듯이 문자열로 변환된 후 스트림에 쓰이는데, sep 로 구분되고 end 를 뒤에 붙입니다.<br>
 > sep 과 end 는 모두 문자열이어야 합니다; None 일 수도 있는데, 기본값을 사용한다는 뜻입니다.<br> objects 가 주어지지 않으면 print() 는 end 만 씁니다. <br>
 > file 인자는 write(string) 메서드를 가진 객체여야 합니다; 존재하지 않거나 None 이면, sys.stdout 이 사용됩니다. 인쇄된 인자는 텍스트 문자열로 변환되기 때문에, print() 는 바이너리 모드 파일 객체와 함께 사용할 수 없습니다. 이를 위해서는. 대신 file.write(...) 를 사용합니다. <br>
+
+
+5. for문으로 반복이 도는 주체를 조작하면 안됨
+```python
+for i in input_list:    # 오답!!!
+    input_list.pop
+```
+6. extend 활용 - 반복 가능한 객체만 넣을 수 있음
+```python
+.extend(iterable)  
+# 그래서 append와는 다르게
+.append(0)          # 가능
+.extend(0)          # 불가능
+```
