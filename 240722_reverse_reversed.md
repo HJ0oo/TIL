@@ -28,7 +28,8 @@ reversed(d)  # TypeError: argument to reversed() must be a sequence
 # 딕셔너리는 순서가 없으니까 불가능
 reversed(s)  # <reversed object at 0x101053c10>
 ```
-- 중요한 점 : reverse는 **reversed 객체**를 반환
+- 중요한 점 : reverse는 **reversed 객체**를 반환. reverse(l)만으로는 바뀌지 않음!
+- output = reverse(l) 이렇게 값을 할당해야 함.
 - list : <**listreverseiterator** object at 0x101053c10>
 - tuple , string : <**reversed** object at 0x101053b50>
 
