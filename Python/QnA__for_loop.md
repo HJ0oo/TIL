@@ -59,6 +59,7 @@ Python에서는 for 루프가 **이터레이터를 사용**하여 동작하기 �
 
 
 ## for-else문
+###### 파이썬 공식 문서 : https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops
 ### `else` 절
 - `for` 또는 `while` 루프도 `else` 절을 가질 수 있다!
 - `for` 루프의 `else` 절은 루프가 마지막 반복을 수행한 후 실행된다.
