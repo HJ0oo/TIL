@@ -17,7 +17,7 @@ def fibo1(n): # O(n)
 
 memo = [0] * (n+1)
 memo[0] = 0
-memo[0] = 1
+memo[1] = 1
 ```
 
 ## DP(Dynamic Programming) 동적계획알고리즘
