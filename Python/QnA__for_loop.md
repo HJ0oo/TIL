@@ -78,3 +78,5 @@ for n in range(2, 10):
         print(n, 'is a prime number')
 ```
 ###### 지금까지 종료조건 설정하기 힘들었는데 이거 잘 활용하기!!!
+
+참고 ) break 에 #for i 처럼 뭐에서 빠져나가는지 주석 달기!
