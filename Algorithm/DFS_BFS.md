@@ -223,7 +223,7 @@ print()
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-## 너비 우선 탐색 (BFS: Breadth-First Search)
+## 너비 우선 탐색 (BFS: Breadth-First Search) - 별도 파일 참고
 - BFS는 현재 노드와 인접한 노드들을 먼저 탐색하는 방법.
 - 큐를 사용
 - 순서: 같은 레벨의 노드들을 먼저 탐색 후, 다음 레벨 탐색
