@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>남은 할 일</h2>
+    <!-- 방법 1 -->
+    <!-- <p>{{ todos.length > 0 ? "아직 남았다" : "퇴근!" }}</p> -->
+    <!-- 지속적으로 이 연산을 진행해야함 : BAD -->
+
+    <!-- 방법 2 -->
+    <p>{{ resfOfTodos }}</p>
+    <!-- 템플릿에서는 자동으로 unwraping 되므로 .value 생략가능 -->
+
+    <!-- 방법 3 -->
+    <p>{{ getRestOfTodos() }}</p> <!-- method 임 -->
+    <!-- computed와 method 차이
+    다시 렌더링이 발생할 때마다 항상 함수를 실행-->
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref, computed} = Vue
+    /*
+    computed 속성은 의존된 반응형 데이터를 "자동으로 추적"
+    의존하는 데이터가 "변경된 때만 재평가"
+    이미 계산된 결과에 대한 여러 참조는 다시 평가할 필요 없이 이전에 계산된 결과를 즉시 반환.
+    의존된 반응형 데이터를 기반으로 "캐시(cached)"됨.
+                        - 데이터나 결과를 일시적으로 저장해두는 임시 저장소
+                        - 이후에 같은 데이터나 결과를 다시 계산하지 않고 빠르게 접근할 수 있도록 함.
+    */
+
+    const app = createApp({
+      setup() {
+        const todos = ref([       // 반응형 배열?
+          { text: 'Vue 실습' },
+          { text: '자격증 공부' },
+          { text: 'TIL 작성' }
+        ])
+
+
+        const resfOfTodos = computed(() => {
+          return todos.value.length > 0 ? "아직 남았다" : "퇴근!" 
+        })
+
+
+        // console.log(resfOfTodos.value) // restOfTodos 라는 객체니까 .value 써야함
+        // 반환되는 값은 computed ref이며 일반 refs와 유사하게 계산된 결과를 .value로 참조할수있음.
+
+
+
+
+
+        // method - 호출을 해야 반환 값이 나오겠지
+        const getRestOfTodos = function () {
+          return todos.value.length > 0 ? "아직 남았다" : "퇴근!" 
+        }
+
+
+
+
+
+
+
+        // computed 주의사항
+        // 의존 데이터를 기준으로 결과값 계산. 이미 계산된 computed값을 변경하려고 하면 안됨.
+        const a = ref(0)
+        const abc = computed(() => {
+          return a.value + 1
+        })
+        console.log(abc.value) // 1
+        // computed는 읽기 전용이기 때문에 아래 코드는 경고가 발생한다.
+        // Write operation failed: computed value is readonly
+        console.log(abc.value++) // 1
+
+
+        return {
+          todos,
+          resfOfTodos,
+          getRestOfTodos
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

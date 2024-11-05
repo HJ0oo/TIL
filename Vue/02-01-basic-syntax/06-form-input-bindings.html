@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-bind와 v-on을 사용하여 실시간으로 출력. 단방향 데이터 바인딩 (input -> 변수) -->
+    <p>{{ inputText1 }}</p>
+    <input :value="inputText1" @input="onInput">
+    <!-- 
+      inputText1 값을 input 요소의 value 속성에 바인딩하고 (@input 이벤트를 사용)
+      사용자가 입력할 때마다 onInput 메서드를 호출하여 inputText1의 값을 업데이트
+    -->
+
+    <!-- v-model을 사용한 양방향 바인딩으로 inputText2를 실시간으로 업데이트 -->
+    <p>{{ inputText2 }}</p>
+    <input v-model="inputText2">
+    <!-- 
+      v-model은 양방향 바인딩으로, inputText2 변수와 입력 필드의 값을 자동으로 동기화합니다. 
+      한국어, 중국어, 일본어와 같이 IME(입력기)가 필요한 언어의 경우 v-model로 업데이트가 원활하지 않을 수 있으며,
+      이 경우 v-bind와 v-on을 사용한 바인딩 방식이 더 적합합니다.
+    -->
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const inputText1 = ref('')  // inputText1은 단방향 바인딩에서 사용할 반응형 변수
+        const onInput = function (event) {
+          inputText1.value = event.currentTarget.value
+          // input 이벤트가 발생할 때마다 inputText1의 값을 업데이트
+        }
+
+        const inputText2 = ref('')  // inputText2는 v-model로 양방향 바인딩되는 반응형 변수
+
+        return {
+          inputText1,
+          onInput,
+          inputText2
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1. v-for -->
+
+    <!-- 출력 결과 div 두개가 나오겠지! -->
+    <div v-for = "item in myArr">
+      {{ item.name }} / {{ item.age }}
+    </div>
+
+    <!-- 위치 정해져 있음 -->
+    <div v-for = "(item,index) in myArr">
+      {{ index }} / {{ item }}
+    </div>
+
+    <!-- 위치 정해져 있음 (value-key 순서인 점 주의)-->
+    <div v-for = "(value, key, index) in myArr">
+      {{ value }} / {{ key }} / {{ index }}
+    </div>
+
+    <!-- 2. v-for on <template> -->
+      <!-- template은 출력되지 않음! -->
+    <ul>
+      <!-- ul 태그는 반복되지 않음! -->
+      <template v-for="item in myArr">
+        <li>{{ item.name }}</li>
+        <li>{{ item.age }}</li>
+      </template>
+      <hr>
+    </ul>
+
+    <!-- 3. nested v-for -->
+    <ul v-for="item in myInfo">
+      <li v-for="friend in item.friends">
+        <!-- {{friend}} -->
+        {{ item.name }} - {{ friend }}
+      </li>
+    </ul>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const myArr = ref([
+          { name: 'Alice', age: 20 },
+          { name: 'Bella', age: 21 }
+        ])
+        const myObj = ref({
+          name: 'Cathy',
+          age: 30
+        })
+
+        // nested v-for
+        const myInfo = ref([
+          { name: 'Alice', age: 20, friends: ['Bella', 'Cathy', 'Dan'] },
+          { name: 'Bella', age: 21, friends: ['Alice', 'Cathy'] }
+        ])
+
+        return {
+          myArr,
+          myObj,
+          myInfo
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

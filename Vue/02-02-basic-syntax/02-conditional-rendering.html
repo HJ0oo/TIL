@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1. if else -->
+
+    <p v-if = "isSeen">true일때 보여요</p>
+    <p v-else>false일때 보여요</p>
+
+    <button @click="isSeen = !isSeen">토글</button>
+
+    <!-- 2. else if -->
+    <div v-if = "name === 'Alice'">Alice입니다</div>
+    <div v-else-if = "name === 'Bella'">Bella입니다</div>
+    <div v-else-if = "name === 'Cathy'">Cathy입니다</div>
+    <div v-else>아무도 아닙니다.</div>
+
+    <!-- 3. v-if on <template> -->
+      <!-- 묶어주는 역할. 나중에 반복분에서도 나올 것. -->
+    <template v-if = "name === 'Cathy'">
+      <div>Cathy입니다</div>
+      <div>나이는 30살입니다</div>
+    </template>
+
+    <!-- 4. v-show -->
+    <div v-show="isShow">v-show</div>
+    <!--
+            **v-if와 v-show의 적절한 사용처**
+          - v-if (Cheap initial load, expensive toggle)
+            - 초기 조건이 false인 경우 아무 작업도 수행하지 않음
+            - 토글 비용이 높음
+            - 싹 지우고, 싹 그리고
+          - v-show (Expensive initial load, cheap toggle)
+            - 초기 조건에 관계 없이 항상 렌더링
+            - 초기 렌더링 비용이 더 높음
+          > 콘텐츠를 매우 자주 전환해야 하는 경우에는 v-show를, 실행 중에 조건이 변경되지 않는 경우에는 v-if를 권장
+    -->
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const isSeen = ref(true)
+        const name = ref('Cathy')
+        const isShow = ref(false)
+
+        return {
+          isSeen,
+          name,
+          isShow
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

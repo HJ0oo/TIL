@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- <p>Hi there</p> -->
+    <!-- seen이 true일 때만 <p> 요소가 렌더링됩니다 -->
+    <p v-if="seen">Hi there</p>
+
+    <!-- <a href="myUrl">Link</a> -->
+    <!-- myUrl 값을 동적으로 바인딩하여 링크 이동 URL을 설정 -->
+    <a v-bind:href="myUrl">Link</a>
+
+    <!-- <button>button</button> -->
+    <!-- click 이벤트가 발생했을 때 doSomething 메서드 호출 -->
+    <button v-on:click="doSomething">button</button>
+
+    <!-- 이벤트 기본 동작을 취소하기 위해 .prevent를 사용 -->
+    <!-- <form> -->
+    <form v-on:submit.prevent="onSubmit">
+      <input type="submit">
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        // seen 값에 따라 <p> 요소가 조건부로 렌더링됩니다.
+        const seen = ref(false) // true로 설정하면 <p>가 보이고, false일 경우 렌더링되지 않음
+
+        const myUrl = 'https://www.google.co.kr/' // 링크 이동 URL을 설정
+        const doSomething = function () {
+          console.log('button clicked') // 버튼 클릭 시 호출될 함수
+        }
+
+        const onSubmit = function () {
+          console.log('form submitted') // 폼 제출 시 호출될 함수
+        }
+
+        return {
+          seen,
+          myUrl,
+          doSomething,
+          onSubmit
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

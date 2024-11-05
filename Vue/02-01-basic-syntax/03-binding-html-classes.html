@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: crimson;
+    }
+
+    .text-primary {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <div>Text</div> -->
+
+    <!-- Binding to Objects -->
+    <!-- 객체(Object)를 이용한 클래스 바인딩.각 클래스가 특정 조건에 따라 동적으로 적용될 수 있도록 설정 -->
+    
+    <div class="active">Text</div> <!-- 항상 active 클래스가 적용되어 crimson 색상으로 표시 -->
+    <div :class="{active: isActive}">Text</div><!-- isActive가 true일 때만 active 클래스가 적용되어 crimson 색상으로 표시 -->
+
+
+    <div class="static" :class="{active:isActive,'text-primary':hasInfo}">Text</div>   <!-- static 클래스는 항상 적용되고, isActive가 true일 때 active 클래스, hasInfo가 true일 때 text-primary 클래스가 추가 적용 -->
+    <div class="static" :class="classObj">Text</div> <!-- classObj 객체에 정의된 조건에 따라 static 클래스와 함께 active 및 text-primary 클래스가 동적으로 적용 -->
+
+    <!-- Binding to Arrays -->
+    <!-- 배열(Array)을 이용한 클래스 바인딩. 클래스 이름들을 배열로 전달하여 순서대로 적용될 수 있도록 설정 -->
+    <div :class="[activeClass,infoClass]">Text</div>  <!-- activeClass와 infoClass에 저장된 클래스 이름이 배열로 전달되어 순서대로 적용됨 -->
+    <div :class="[{active:isActive},infoClass]">Text</div>  <!-- active 클래스는 isActive 조건에 따라 적용되며, infoClass가 추가로 적용되어 동일한 출력 제공 -->
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const isActive = ref(true) // active 클래스를 조건부로 적용하는 boolean 값
+        const hasInfo = ref(true) // text-primary 클래스를 조건부로 적용하는 boolean 값
+
+        // 객체(Object)를 사용한 클래스 바인딩 - 조건에 따라 여러 클래스를 동적으로 적용
+        const classObj = ref({
+          active: isActive.value, // isActive가 true일 때 active 클래스 적용
+          'text-primary': hasInfo.value // hasInfo가 true일 때 text-primary 클래스 적용
+        })
+
+        // 배열(Array)로 클래스 바인딩할 때 사용할 개별 클래스 이름 변수
+        const activeClass = ref('active') // 문자열로 저장된 active 클래스
+        const infoClass = ref('text-primary') // 문자열로 저장된 text-primary 클래스
+
+        return {
+          isActive,
+          hasInfo,
+          classObj,
+          activeClass,
+          infoClass
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- imageSrc 값을 동적으로 바인딩하여 이미지 링크를 설정합니다. v-bind를 사용해야 변수로 인식됩니다. -->
+    <img v-bind:src="imageSrc">
+
+    <!-- myUrl 값을 동적으로 바인딩하여 링크 이동 URL을 설정합니다. -->
+    <a v-bind:href="myUrl">Move to url</a>
+
+    <!-- v-bind의 약어 :를 사용하여 더 간단하게 바인딩 -->
+    <img :src="imageSrc">
+    <a :href="myUrl">Move to url</a>
+
+    <!-- 대괄호([])를 사용하여 동적 속성 이름을 설정할 수 있습니다. -->
+    <p :[dynamicattr]="dynamicValue">Dynamic Attr</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const imageSrc = ref('https://picsum.photos/200')
+        const myUrl = ref('https://www.google.co.kr/')
+        const dynamicattr = ref('title') // 이것만 camelCase가 아니라 소문자로만 구성
+        // 동적 인자 이름, 즉 대괄호 안에 작성하는 이름은 반드시 소문자로만 구성 가능
+        // 브라우저가 속성 이름을 소문자로 강제 변환하기 때문.
+
+        // 동적 속성 이름 - 속성 이름을 동적으로 지정할 때는 대괄호([]) 안에 사용
+        // 브라우저가 HTML 속성 이름을 소문자로 처리하므로, 대괄호 안 이름은 반드시 소문자여야 함
+
+        // dynamicattr는 대괄호([])를 사용해 동적으로 바인딩할 속성 이름을 지정합니다.
+        // 속성 이름은 꼭 소문자일 필요는 없으나, HTML 표준에 따라 브라우저가 일부 속성을 소문자로 변환할 수 있습니다.
+
+        const dynamicValue = ref('Hello Vue.js')
+        return {
+          imageSrc,
+          myUrl,
+          dynamicattr,
+          dynamicValue
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
